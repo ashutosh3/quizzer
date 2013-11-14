@@ -1,0 +1,38 @@
+[
+	{
+		"roomId": "rid1",		
+		"startTime": "",
+		"finishedTime": "",
+		"participants": [
+			{ "id":"participant1", "userName":"ashutosh", "joinTime": ""},
+			{ "id":"participant2", "userName":"sivanesh", "joinTime": ""},
+			{ "id":"participant3", "userName":"soman", "joinTime": ""},
+			{ "id":"participant4", "userName":"ankit", "joinTime": ""}
+		],
+
+		"Item1": {
+			"sequence": "1",
+			"startedAt": "to be used to implement timeout", 
+			"startCause": "Timeout or All Answered",
+			"completedAt": "",
+			"responses": {
+				"ashutosh": {
+					"response": "1",
+					"respondedAt": ""
+				}, 
+				"sivanesh": {
+					"response": "2",
+					"respondedAt": ""
+				}, 
+				"soman": {
+					"response": "1",
+					"respondedAt": ""
+				}, 
+				"ankit": {
+					"response": "3",
+					"respondedAt": ""
+				}				
+			}
+		}
+	}	
+]

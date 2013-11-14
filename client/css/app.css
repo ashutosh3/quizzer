@@ -1,0 +1,140 @@
+body {
+  word-wrap: break-word;
+  min-width: 960px;
+}
+
+.poker_card.first {
+  margin-left: 10px;
+}
+
+
+.poker_card {
+  border: solid 1px #C8C8C8;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 100px;
+  line-height: 100px;
+  width: 70px;
+  text-align: center;
+  vertical-align: middle;
+  clear: none;
+  float: left;
+  /*margin-left: -10px;*/
+  margin-left: 5px;
+  border-right: 0px;
+  background: #5B9BD5;
+  color: #EFF5FB;
+}
+
+.poker_card.voted,.poker_card.name {
+  border: solid 1px #C8C8C8;
+  cursor: auto;
+  width: 120px;
+  margin-left: 10px;
+  border-right: 1px;
+}
+.poker_card.name {
+  border: solid 1px #C8C8C8;
+  cursor: auto;
+  height: 20px;
+  line-height: 20px;
+  width: 120px;
+  margin-left: 10px;
+  border-right: 1px;
+}
+
+.poker_card.last {
+  border-right: 1px;
+  border: solid 1px #C8C8C8;
+}
+
+.itemlist {
+  border: solid 1px #C8C8C8;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  color: green;
+  height: 25px;
+  line-height: 25px;
+  vertical-align: middle;
+}
+
+.userlist {
+  border-bottom: solid 1px #C8C8C8;
+  cursor: pointer;
+  margin-bottom: 5px;
+  color: green;
+  height: 25px;
+  line-height: 25px;
+  vertical-align: middle;
+}
+
+.itemlist.success {
+  background: #C5E0B3;
+}
+
+.itemlist.failed {
+  background: #F08992;
+}
+
+.cvnav {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.usermessage {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.startbtn {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.usermessage span {
+  height: 80px;
+  line-height: 80px;
+  font-weight: bold;
+  color: #5B9BD5;
+}
+
+.usermessage span.failed {
+  color: #f26371;
+}
+
+.row.itemdescarea {
+  height: 200px;
+  vertical-align: middle;
+}
+
+.item_cards {
+  
+}
+
+.hdr {
+  padding: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.qlist {
+  border: 1px solid black; 
+  border-radius: 4px; 
+  min-height: 450px;
+}
+
+#footer
+{
+position:fixed;
+height:30px;
+bottom:0px;
+left:0px;
+right:0px;
+margin-bottom:0px;
+}
+
+.width80 {
+  width: 80px;
+}

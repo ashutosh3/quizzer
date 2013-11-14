@@ -1,0 +1,34 @@
+[
+	{
+		"roomId": "rid1", 
+		"name": "Test Room 1", 
+		"owner": "Ashutosh", 
+		"roomType": "quiz",
+		"itemTimeout": "3000",
+		"items": [
+				{
+					"itemId": "Item1",
+					"itemText": "This is first item",
+					"score": "10",
+					"itemTimeout": "5000",
+					"choices": {
+						"choice1": {"choiceText":"choice1", "sequence": 1, "correct": "true"},
+						"choice2": {"choiceText":"choice2", "sequence": 2, "correct": "false"},
+						"choice3": {"choiceText":"choice3", "sequence": 3, "correct": "false"},
+						"choice4": {"choiceText":"choice4", "sequence": 4, "correct": "false"}
+					}
+				},
+				{
+					"itemId": "Item2",
+					"itemText": "This is second item",
+					"score": "10",
+					"choices": {
+						"choice1": {"choiceText":"choice1", "sequence": 1, "correct": "true"},
+						"choice2": {"choiceText":"choice2", "sequence": 2, "correct": "false"},
+						"choice3": {"choiceText":"choice3", "sequence": 3, "correct": "false"},
+						"choice4": {"choiceText":"choice4", "sequence": 4, "correct": "false"}
+					}		
+				}
+			]
+	}
+]

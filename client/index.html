@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>topnoders</title>
+
+  
+  <link rel="stylesheet" href="css/lib/foundation.min.css">
+  <link rel="stylesheet" href="css/app.css" />
+  <!-- <link rel="stylesheet" href="css/foundation_icons/foundation_icons_all/foundation_icons_general/stylesheets/general_foundicons.css" /> -->
+
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <!-- Header and Nav -->
+    <nav class="top-bar">
+      <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+          <h1>{{#link-to 'rooms'}}<u>Quizzes</u>{{/link-to}}</h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <!-- li class="divider"></li>
+          <li class="active"><a href="#">Time Here</a></li -->
+          <li class="divider"></li>
+          <li class="active"><a href="#" data-tooltip1 data-options="disable-for-touch:true">{{#if App.currentUser}}Hi {{App.currentUser.userName}}{{#if App.currentRoom}}, welcome to {{App.currentRoom}} Room{{/if}}{{/if}}</a></li>
+          <li class="divider"></li>
+          <li class="active"><a {{action clearUserDetails}} data-tooltip1 data-options="disable-for-touch:true">{{#if App.currentUser}}Not {{App.currentUser.userName}}, Click Here.{{/if}}</a></li>
+        </ul>
+      </section>
+    </nav>
+
+    {{outlet root}}
+
+    <!-- Footer -->
+    <footer id="footer" class="row">
+      <div class="small-12 columns">
+          <div>
+            <p style="text-align: right">&copy; Copyright <a href="#">topnoders</a>. 2013-14.</p>
+          </div>
+      </div> 
+    </footer>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="rooms">
+    <div class="row">
+      <div class="large-6 columns">
+        <table style="margin-top: 20px;">
+          <caption style="text-align: -webkit-left;text-align: left"><span style="color: #5B9BD5; font-weight: bold;">Create New Room</span></caption>
+          <tbody>
+            <tr> 
+              <td>Name: </td>
+              <td><input id="room-name" type="text" value="" placeholder="Enter new Room name here."/></td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="item" style="margin-top: 20px;">
+          <caption style="text-align: -webkit-left;text-align: left"><span style="color: #5B9BD5; font-weight: bold;">Item Details:</span></caption>
+          <tbody>
+            <tr>
+              <td>Title: </td>
+              <td><input id="item-title" type="text" value="" placeholder="Enter Item title here."/></td>
+            </tr>
+            <tr>
+              <td>Description: </td>
+              <td><input id="item-desc" type="text" value="" placeholder="Enter Item Description here."/></td>
+            </tr>
+            <tr>
+              <td>Options: </td>
+              <td>
+                <table> 
+                  <thead>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>a</td>
+                      <td><input id="item-option1" type="text" value="" placeholder="Enter new Item's options' here."/></td>
+                      <td><input type="radio" id="correctResult1" name="correctResult" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>b</td>
+                      <td><input id="item-option2" type="text" value="" placeholder="Enter new Item's options' here."/></td>
+                      <td><input type="radio" id="correctResult2" name="correctResult" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>c</td>
+                      <td><input id="item-option3" type="text" value="" placeholder="Enter new Item's options' here."/></td>
+                      <td><input type="radio" id="correctResult3" name="correctResult" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>d</td>
+                      <td><input id="item-option4" type="text" value="" placeholder="Enter new Item's options' here."/></td>
+                      <td><input type="radio" id="correctResult4" name="correctResult" value=""></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+            </tr>
+          </tbody>
+        </table>
+        <a {{action addItemToNewRoom}} class="button small">Add More Items</a> <a {{action createRoom}} class="button small">Create Room</a>
+      </div>
+
+      <div class="large-offset-1 large-5 columns">
+        <table style="margin-top: 20px;">
+          <caption style="text-align: -webkit-left;text-align: left">
+            <span style="color: #5B9BD5; font-weight: bold;float:left">Join Rooms</span>
+            <span style="color: #5B9BD5; font-weight: bold;float:right">
+              <a {{action createSampleRoom}} class="button tiny">Join Sample Room</a>
+            </span>
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Owner</th>
+              <th>Room Type</th>
+              <th>Created</th>
+              <th>Join</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each room in rooms}}
+            <tr> 
+              <td>{{room.room.roomName}}</td>
+              <td>{{room.room.owner}}</td>
+              <td>{{room.room.roomType}}</td>
+              <td>{{room.room.createdTime}}</td>
+              <td>{{#link-to 'room' room}} Join {{/link-to}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="room">
+    <div class="row">
+      <div class="large-3 columns qlist">
+        <!-- left side user stories add button -->
+        <div class="row">
+        <br>
+          <span class="hdr">Answered Questions</span>
+        </div>
+
+        <!-- left side user stories navigation -->
+        <div class="row">
+          <div class="large-12 columns">
+            <ul class="side-nav">
+
+              {{#each historyItem in itemHistory}}
+              <li>
+                {{#if historyItem.currentUserAnsweredCorrectly}}
+                  <div class="row itemlist success">
+                      <span>{{substr historyItem.itemText end=30 suffix="..."}}</span>
+                  </div>
+                {{else}}
+                  <div class="row itemlist failed">
+                      <span>{{substr historyItem.itemText end=30 suffix="..."}}</span>
+                  </div>
+                {{/if}}
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="large-7 columns cvnav">
+        <div style="text-align: center"><span style="font-size: 30px">Quiz Room: {{room.roomName}}</span></div>
+        <br>
+        <!-- For showing user message -->
+        {{#if App.userNotification}}
+          <div class="row usermessage" style="border: 1px solid black">
+            {{#if App.userNotification.isInfo}}
+              <span data-options="disable-for-touch:true" class="success" {{bind-attr title="App.userNotification.text"}}>
+              {{App.userNotification.text}}
+              </span>
+            {{else}}
+              <span data-options="disable-for-touch:true" class="failed" {{bind-attr title="App.userNotification.text"}}>
+              {{App.userNotification.text}}
+              </span>
+            {{/if}}
+          </div>
+        {{/if}}
+
+        <div class="row startbtn">
+          <div class="large-12 columns">
+            {{#if App.currentUser.isOwnerForCurrentRoom}}
+              {{#if model.notStarted}}
+                <br>
+                <a {{action startRoom model}} href="javascript:void(0)" class="button">START</a>
+              {{/if}}
+            {{/if}}
+          </div>
+        </div>
+        <br>
+        <div class="row itemdescarea" style="border: 1px solid black;border-radius: 5px">
+            <div style="margin-top: 10px; margin-bottom: 1px;">
+              <div data-tooltip1 data-options="disable-for-touch:true" style="color: #5B9BD5; vertical-align: middle;text-align: left;padding-left: 15px;">
+                <span style="line-height: 130%;">
+                <strong><span style="font-size: 40px">{{currentItem.sequence}}</span> {{currentItem.itemText}}</strong>
+                <br>
+                {{#each choice in currentItem.choices}}
+                  <br><span style="padding-left: 15px"><span style="font-size: 20px">{{add choice.index}})</span>   {{choice.choiceText}}</span>
+                {{/each}}
+                </span>
+              </div>
+          </div>
+          
+        </div>
+
+        <!-- Deck of card goes in second row -->
+        <div class="row item_cards" style="text-align: center">
+        <br>
+          {{#if model.notStarted}}                
+          {{else}}
+            {{#each choice in currentItem.choices}}
+                <a {{action respond model choice}} href="javascript:void(0)" 
+                    {{bind-attr class="choiceClass"}}  class="">{{add choice.index}}</a>
+            {{/each}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="large-2 columns">
+        <!-- right side user stories add button -->
+        <div class="qlist">
+        <br>
+          {{#if participants.length}}
+            <span class="hdr">Leaderboard</span>
+          {{/if}}
+          <!-- right side user stories navigation -->
+            <ul class="side-nav">
+              <!-- Need change -->
+              {{#each participant in participants}}
+              <li>
+                <div class="userlist">
+                    <span style="float:left; min-width: 100px;padding-left: 10px;">{{substr participant.userName end=20 suffix="..."}}</span>
+                    <span stype="float:left">{{participant.score}}</span>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+        </div>
+      </div>
+
+    </div>
+  </script>
+  
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/lib/zepto' : 'js/lib/jquery/jquery-1.9.1.min.') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/lib/jquery/jquery-1.9.1.js"></script>
+  <script src="js/lib/foundation/foundation.min.js"></script>
+  <script src="js/lib/ember/handlebars.js"></script>
+  <script src="js/lib/ember/ember.js"></script>
+  <script src="js/lib/jquery/jquery.blockUI.js"></script>
+  <script src="js/lib/jquery/jquery.cookie.js"></script>
+  <script src="js/lib/socket.io.js"></script>
+  <script src="js/apis.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/sio.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    $(document).foundation();
+  </script>
+
+</body>
+</html>
